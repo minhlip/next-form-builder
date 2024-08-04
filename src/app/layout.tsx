@@ -10,6 +10,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Toaster } from '@/components/ui/toaster';
+import DesignerContexProvider from '@/components/providers/DesignerContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,15 +28,17 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
+          <DesignerContexProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <Toaster />
+            </ThemeProvider>
+          </DesignerContexProvider>
         </body>
       </html>
     </ClerkProvider>
