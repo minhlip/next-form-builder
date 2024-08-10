@@ -1,7 +1,15 @@
 import React from 'react';
+import SidebarBtnElement from './SidebarBtnElement';
+import { FormElements } from './FormElement';
 
 const FormElementSidebar = () => {
-  return <div>FormElementSidebar</div>;
+  return (
+    <div>
+      {' '}
+      Element
+      <SidebarBtnElement formElement={FormElements.TextField} />
+    </div>
+  );
 };
 
 export default FormElementSidebar;

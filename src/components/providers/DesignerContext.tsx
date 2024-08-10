@@ -9,6 +9,7 @@ type DesignerContexType = {
   removeElement: (id: string) => void;
   selectedElement: FormElementInstance | null;
   setSelectedElement: Dispatch<SetStateAction<FormElementInstance | null>>;
+  updateElement: (id: string, element: FormElementInstance) => void;
 };
 
 export const DesignerContex = createContext<DesignerContexType | null>(null);
@@ -34,6 +35,16 @@ export default function DesignerContexProvider({
     setElements((prev) => prev.filter((element) => element.id !== id));
   };
 
+  const updateElement = (id: string, element: FormElementInstance) => {
+    setElements((prev) => {
+      const newElements = [...prev];
+      const index = newElements.findIndex((el) => el.id === id);
+      newElements[index] = element;
+      console.log('newElements', newElements);
+      return newElements;
+    });
+  };
+
   return (
     <DesignerContex.Provider
       value={{
@@ -42,6 +53,7 @@ export default function DesignerContexProvider({
         removeElement,
         elements,
         addElements,
+        updateElement,
       }}
     >
       {children}

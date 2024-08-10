@@ -25,7 +25,6 @@ const Designer = () => {
 
   useDndMonitor({
     onDragEnd: (event: DragEndEvent) => {
-      console.log('DRAG END', event);
       const { active, over } = event;
 
       if (!active || !over) return;
@@ -39,10 +38,11 @@ const Designer = () => {
           idGenerator()
         );
         addElements(0, newElements);
-        console.log('NEW ELEMENTS', newElements);
       }
     },
   });
+
+  console.log(elements);
 
   return (
     <div className="flex w-full h-full">
@@ -120,8 +120,6 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
       isBottomHalfDesignerElement: true,
     },
   });
-
-  console.log('element', selectedElement);
 
   if (draggable.isDragging) return null;
 
